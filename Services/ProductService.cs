@@ -1,8 +1,9 @@
-﻿using MVC_Demo.Models;
+﻿using MVC_Demo.Interfaces;
+using MVC_Demo.Models;
 
 namespace MVC_Demo.Services
 {
-    public class ProductService
+    public class ProductService:IGetService
     {
         private readonly List<Product> _products = new();
 
@@ -29,6 +30,11 @@ namespace MVC_Demo.Services
         {
             var existing = GetById(id);
             if (existing != null) _products.Remove(existing);
+            DisplayMessage();
+        }
+        public void DisplayMessage()
+        {
+            Console.WriteLine("Product Service Message");
         }
     }
 }

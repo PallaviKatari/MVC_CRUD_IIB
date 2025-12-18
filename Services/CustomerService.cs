@@ -1,11 +1,12 @@
-﻿using MVC_Demo.Models;
+﻿using MVC_Demo.Interfaces;
+using MVC_Demo.Models;
 using System.Xml.Linq;
 
 namespace MVC_Demo.Services
 {
     //Business Logic - CRUD Operations from DB or In-Memory List
     //Service for In-Memory List
-    public class CustomerService
+    public class CustomerService : IGetService
     {
         private readonly List<Customer> _customers = new();
 
@@ -36,6 +37,12 @@ namespace MVC_Demo.Services
         {
             var existing = GetById(id); //1
             if (existing != null) _customers.Remove(existing);
+            DisplayMessage();
+        }
+
+        public void DisplayMessage()
+        {
+            Console.WriteLine("Customer Service Message");
         }
     }
 }

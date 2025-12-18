@@ -1,3 +1,4 @@
+using MVC_Demo.Interfaces;
 using MVC_Demo.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,7 @@ builder.Services.AddControllersWithViews();
 //Customer Service Registration in DI Container
 builder.Services.AddSingleton<CustomerService>(); // in-memory service
 builder.Services.AddSingleton<ProductService>(); // in-memory service
+builder.Services.AddSingleton<IGetService, CustomerService>(); // Interface to Service mapping
 
 var app = builder.Build();
 
