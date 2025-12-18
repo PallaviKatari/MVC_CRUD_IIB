@@ -2,10 +2,12 @@ using MVC_Demo.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to the DI container.
 builder.Services.AddControllersWithViews();
 
+//Customer Service Registration in DI Container
 builder.Services.AddSingleton<CustomerService>(); // in-memory service
+builder.Services.AddSingleton<ProductService>(); // in-memory service
 
 var app = builder.Build();
 
@@ -17,6 +19,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+//Pre-defined Middlewares are added to the pipeline
 app.UseHttpsRedirection();
 app.UseRouting();
 

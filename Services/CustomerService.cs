@@ -3,13 +3,17 @@ using System.Xml.Linq;
 
 namespace MVC_Demo.Services
 {
+    //Business Logic - CRUD Operations from DB or In-Memory List
     //Service for In-Memory List
     public class CustomerService
     {
         private readonly List<Customer> _customers = new();
 
+        //Get All Customers
         public List<Customer> GetAll() => _customers;
 
+        //Get Customer by Id
+        //Lambda Expression
         public Customer? GetById(int id) => _customers.FirstOrDefault(c => c.Id == id);
 
         public void Add(Customer customer)
@@ -20,7 +24,7 @@ namespace MVC_Demo.Services
 
         public void Update(Customer customer)
         {
-            var existing = GetById(customer.Id);
+            var existing = GetById(customer.Id); // 1
             if (existing != null)
             {
                 existing.Name = customer.Name;
@@ -30,7 +34,7 @@ namespace MVC_Demo.Services
 
         public void Delete(int id)
         {
-            var existing = GetById(id);
+            var existing = GetById(id); //1
             if (existing != null) _customers.Remove(existing);
         }
     }
